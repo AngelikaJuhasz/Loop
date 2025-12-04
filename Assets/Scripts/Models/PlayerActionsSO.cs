@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Prototype
 {
-    [CreateAssetMenu(fileName = Paths.ScriptableObjects.PlayerActions.FileName, menuName = Paths.ScriptableObjects.PlayerActions.MenuName)]
+    [CreateAssetMenu(fileName = Paths.SOs.PlayerActions.FileName, menuName = Paths.SOs.PlayerActions.MenuName)]
     public sealed class PlayerActionsSO : ScriptableObject
     {
         public List<PlayerAction> playerActions;

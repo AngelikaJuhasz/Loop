@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    [CreateAssetMenu(fileName = Paths.ScriptableObjects.Equipment.FileName, menuName = Paths.ScriptableObjects.Equipment.MenuName)]
+    [CreateAssetMenu(fileName = Paths.SOs.Equipment.FileName, menuName = Paths.SOs.Equipment.MenuName)]
     public class EquipmentSO : ScriptableObject
     {
         // TODO: add unique functionality and fields for visuals etc.

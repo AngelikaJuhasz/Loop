@@ -10,8 +10,9 @@ namespace Prototype
         [Header("References")]
         [SerializeField] private PlayerInputManager _playerInputManager;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private List<GameObject> _playerPrefabs;
-
+        [SerializeField] private PartyOrderSO _partyOrderSO;
+        
+        private List<GameObject> _playerPrefabs;
         private int _prefabIndex;
         
         private void Awake()
@@ -19,6 +20,9 @@ namespace Prototype
             // TODO: move these elsewhere later, they are not part of managing inputs
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            
+            // TODO: move this as well. This is certified spaghetti at this point
+            _playerPrefabs = _partyOrderSO.Characters;
             
             _playerInputManager.playerPrefab = _playerPrefabs[_prefabIndex]; // TODO: set this to match selected order later
             _prefabIndex = (_prefabIndex + 1) % _playerPrefabs.Count; // ensure looping

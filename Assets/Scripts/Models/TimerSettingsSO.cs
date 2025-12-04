@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    [CreateAssetMenu(menuName = Paths.ScriptableObjects.TimerSettings.MenuName, fileName = Paths.ScriptableObjects.TimerSettings.FileName)]
+    [CreateAssetMenu(menuName = Paths.SOs.TimerSettings.MenuName, fileName = Paths.SOs.TimerSettings.FileName)]
     public sealed class SwapTimerSettingsSO : ScriptableObject
     {
         public float durationSeconds = 10f;

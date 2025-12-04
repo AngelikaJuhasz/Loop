@@ -2,7 +2,7 @@ namespace Prototype
 {
     public static class Paths
     {
-        public static class ScriptableObjects
+        public static class SOs
         {
             private const string BASE_PATH = "Prototype/";
             
@@ -25,6 +25,14 @@ namespace Prototype
             public static class TimerSettings
             {
                 private const string NAME = "TimerSettingsSO";
+                
+                public const string FileName = NAME;
+                public const string MenuName = BASE_PATH + NAME;
+            }
+            
+            public static class PartyOrder
+            {
+                private const string NAME = "PartyOrderSO";
                 
                 public const string FileName = NAME;
                 public const string MenuName = BASE_PATH + NAME;
