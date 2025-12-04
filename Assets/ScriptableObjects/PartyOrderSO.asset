@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ddba3e9f122db4cb170020c86c0aa7, type: 3}
   m_Name: PartyOrderSO
   m_EditorClassIdentifier: Assembly-CSharp::PartyOrderSO
-  characterIds: []
+  _characters:
+  - {fileID: 576525307188803519, guid: 763f9255cdaead1469690a859ba5232c, type: 3}
+  - {fileID: 576525307188803519, guid: af1c0bbdc9c629745ac682e89d800d9e, type: 3}
+  - {fileID: 576525307188803519, guid: 182cd38a48e1d0e499cf4ccf59cf92ce, type: 3}
+  - {fileID: 576525307188803519, guid: 9b6af32b4380de74db5064f1807ce050, type: 3}

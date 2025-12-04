@@ -18,10 +18,11 @@ namespace Prototype
         public event Action<Vector2> Look;
         public event Action Jump;
         public event Action Interact;
+        public event Action Special;
         
         public PlayerInput PlayerInput => _playerInput;
         
-        private InputAction _move, _look, _jump, _interact;
+        private InputAction _move, _look, _jump, _interact, _special;
         private Vector2 _stickLookRate;
         private bool _attached, _disposed;
         
@@ -48,6 +49,7 @@ namespace Prototype
             _look = actions.FindAction(_playerActionsSO.GetReference(InputActionOptions.Look).action.id);
             _jump = actions.FindAction(_playerActionsSO.GetReference(InputActionOptions.Jump).action.id);
             _interact = actions.FindAction(_playerActionsSO.GetReference(InputActionOptions.Interact).action.id);
+            _special = actions.FindAction(_playerActionsSO.GetReference(InputActionOptions.Special).action.id);
 
             _move.performed += OnMovePerformed;
             _move.canceled  += OnMoveCanceled;
@@ -55,6 +57,7 @@ namespace Prototype
             _look.canceled  += OnLookCanceled;
             _jump.performed += OnJumpPerformed;
             _interact.performed += OnInteractPerformed;
+            _special.performed += OnSpecialPerformed;
         
             Enable();
             
@@ -74,11 +77,13 @@ namespace Prototype
             _look.canceled  -= OnLookCanceled;
             _jump.performed -= OnJumpPerformed;
             _interact.performed -= OnInteractPerformed;
+            _special.performed -= OnSpecialPerformed;
             
             _move = null;
             _look = null;
             _jump = null;
             _interact = null;
+            _special = null;
             _playerInput = null;
             _stickLookRate = Vector2.zero;
             
@@ -91,6 +96,7 @@ namespace Prototype
             _look?.Enable();
             _jump?.Enable();
             _interact?.Enable();
+            _special?.Enable();
         }
         
         public void Disable()
@@ -99,6 +105,7 @@ namespace Prototype
             _look?.Disable();
             _jump?.Disable();
             _interact?.Disable();
+            _special?.Disable();
         }
     
         public void Dispose()
@@ -141,5 +148,7 @@ namespace Prototype
         private void OnJumpPerformed(InputAction.CallbackContext context) => Jump?.Invoke();
         
         private void OnInteractPerformed(InputAction.CallbackContext context) => Interact?.Invoke();
+        
+        private void OnSpecialPerformed(InputAction.CallbackContext context) => Special?.Invoke();
     }
 }

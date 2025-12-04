@@ -11,6 +11,7 @@ namespace Prototype
         public event Action<Vector2> Look;
         public event Action Jump;
         public event Action Interact;
+        public event Action Special;
         
         // Field for getting the PlayerInput component
         public PlayerInput PlayerInput { get; }

@@ -63,8 +63,9 @@ namespace Prototype
             reader.Look += motor.Look;
             reader.Jump += motor.Jump;
             reader.Interact += motor.Interact;
+            reader.Special += motor.Special;
             
-            // timer subscribe
+            // timer subscription logic
             Timer timer = go.GetComponent<Timer>();
 
             if (!timer) return;
@@ -72,7 +73,7 @@ namespace Prototype
             timer.ResetAndStart(); // reset state of timer
             timer.Elapsed += OnTimerElapsed; // subscribe to timer
             
-            // repopulate inventory
+            // repopulate inventory of spawned character
             InventoryManager.Instance?.ApplyTo(go);
         }
         

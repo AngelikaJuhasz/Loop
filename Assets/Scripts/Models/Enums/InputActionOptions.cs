@@ -5,6 +5,7 @@ namespace Prototype
         Move = 0,
         Look = 1,
         Jump = 2,
-        Interact = 3
+        Interact = 3,
+        Special = 4
     }
 }

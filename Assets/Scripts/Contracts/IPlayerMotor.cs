@@ -12,5 +12,6 @@ namespace Prototype
         public void Look(Vector2 deltaDegrees);
         public void Jump();
         public void Interact();
+        public void Special();
     }
 }

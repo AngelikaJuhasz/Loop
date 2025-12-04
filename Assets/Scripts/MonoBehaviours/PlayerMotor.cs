@@ -19,6 +19,7 @@ namespace Prototype
         
         // TODO: should be separated into its own whole; interaction is not part of player movement
         public static event Action OnInteract;
+        public static event Action OnSpecial;
         public GameObject Player => gameObject;
         
         private Vector2 _moveAxes;
@@ -59,9 +60,16 @@ namespace Prototype
         
         private void OnTriggerEnter(Collider other)
         {
-            if ((_jumpResetLayer.value & (1 << other.gameObject.layer)) == 0) return;
-        
-            ResetJumps();
+            if ((_jumpResetLayer.value & (1 << other.gameObject.layer)) != 0)
+            {
+                ResetJumps();
+            }
+            
+            // STICKY BUBBLEGUM
+            if ((1 << 8 & (1 << other.gameObject.layer)) != 0)
+            {
+                ResetJumps();
+            }
         }
         
         private void ResetJumps()
@@ -91,6 +99,11 @@ namespace Prototype
         public void Interact()
         {
             OnInteract?.Invoke();
+        }
+
+        public void Special()
+        {
+            OnSpecial?.Invoke();
         }
     }
 }

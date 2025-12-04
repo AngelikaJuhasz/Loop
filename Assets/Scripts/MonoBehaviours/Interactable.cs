@@ -37,14 +37,14 @@ namespace Prototype
         {
             if (!_cameraTransform) _cameraTransform = Camera.main?.transform; // TODO: fix this bubblegum
             
-            _canvas.SetActive(true);
+            if (_canvas) _canvas.SetActive(true);
             _interactable = true;
         }
         
         // due to the physics collision matrix, we don't need a player check as this only works with Player layer
         private void OnTriggerExit(Collider other)
         {
-            _canvas.SetActive(false);
+            if (_canvas) _canvas.SetActive(false);
             _interactable = false;
         }
 
@@ -53,32 +53,22 @@ namespace Prototype
             // check if player is in range
             if (!_interactable) return;
             
-            // check if player is the same as required
+            // check if player is the same as required player
             if (_requiredPlayer && PlayerGO && _requiredPlayer.Id != PlayerGO.GetComponent<PlayerData>().Id)
             {
-                Debug.LogWarning($"Incorrect player ID!\nExpected: {_requiredPlayer.Id}");
+                PlayerGO.GetComponent<PlayerData>().Show("You are not the right character to use that!", 1.5f);
                 return;
             }
             
-            // check if the equipment are as required
-            // TODO: make into a list of required equipment later
+            // check if the equipment are as required equipment
+            // TODO: make into a list of required equipment later on
             if (_requiredEquipment && PlayerGO && !PlayerGO.GetComponent<PlayerData>().CheckEquipment(_requiredEquipment))
             {
-                Debug.LogWarning($"Cannot interact without the following equipment:\n{_requiredEquipment.name}!");
+                PlayerGO.GetComponent<PlayerData>().Show("You do not have the correct equipment to use that!", 1.5f);
                 return;
             }
             
             OnInteract?.Invoke();
-        }
-
-        public void Victory()
-        {
-            Debug.Log("You win!");
-        }
-        
-        public void Pointless()
-        {
-            Debug.Log("You successfully interacted with the white box and it did... nothing!");
         }
     }
 }
