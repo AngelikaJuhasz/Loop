@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992b199cdb50e5343953ed52aaa3087b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prototype.StartButton
-  _nextSceneName: LoopingDemoScene
+  _nextSceneName: SolutionDemoScene
   _partyOrderSO: {fileID: 11400000, guid: 51324ced152f5fd48928efea7a9e4369, type: 2}
   _partyOrderManager: {fileID: 491127231}
 --- !u!1 &1455804345

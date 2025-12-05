@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 387170c86e1f1c5418a31cfb99850e85
   - enabled: 1
+    path: Assets/Scenes/SolutionDemoScene.unity
+    guid: 6060cda19008cbc49bdfafce94a6ab79
+  - enabled: 1
+    path: Assets/Scenes/CarryDemoScene.unity
+    guid: b3d0e67c4ff24884a886c1888a9f7743
+  - enabled: 1
+    path: Assets/Scenes/EquipmentDemoScene.unity
+    guid: 44a8da792acfe044bae2d61bc24a3189
+  - enabled: 1
     path: Assets/Scenes/LoopingDemoScene.unity
     guid: c33fb372f0a52804095be9c2af20225d
   - enabled: 1

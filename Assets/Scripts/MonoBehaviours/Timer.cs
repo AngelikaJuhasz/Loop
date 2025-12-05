@@ -17,7 +17,13 @@ namespace Prototype
         private float _timeRemaining;
         private bool _isRunning;
 
-        private void OnEnable() => ResetAndStart();
+        private void OnEnable()
+        {
+            PlayerMotor.OnSpecial += ElapseTimer;
+            ResetAndStart();
+        }
+        
+        private void OnDisable() => PlayerMotor.OnSpecial -= ElapseTimer;
 
         private void Update()
         {
@@ -39,6 +45,12 @@ namespace Prototype
             UpdateLabel();
         }
 
+        private void ElapseTimer()
+        {
+            ResetAndStart();
+            Elapsed?.Invoke(this);
+        }
+        
         private void UpdateLabel()
         {
             if (!label) return;

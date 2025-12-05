@@ -15,14 +15,35 @@ namespace Prototype
         [Header("Events")]
         public UnityEvent OnInteract;
         
-        public GameObject PlayerGO => _cameraTransform?.parent.gameObject; // horrendous bubblegum
+        private GameObject _playerGO;
+
+        public GameObject PlayerGO
+        {
+            get
+            {
+                if (_playerGO) return _playerGO;
+
+                if (_cameraTransform)
+                    _playerGO = _cameraTransform.GetComponentInParent<PlayerMotor>()?.gameObject;
+
+                if (!_playerGO)
+                    _playerGO = GameObject.FindGameObjectWithTag("Player");
+
+                return _playerGO;
+            }
+        }
         
         private Transform _cameraTransform;
         private bool _interactable;
         
         private void OnEnable() => PlayerMotor.OnInteract += Interact;
         
-        private void OnDisable() => PlayerMotor.OnInteract -= Interact;
+        private void OnDisable()
+        {
+            PlayerMotor.OnInteract -= Interact;
+            _cameraTransform = null;
+            _playerGO = null;
+        }
         
         private void Update()
         {
@@ -54,17 +75,17 @@ namespace Prototype
             if (!_interactable) return;
             
             // check if player is the same as required player
-            if (_requiredPlayer && PlayerGO && _requiredPlayer.Id != PlayerGO.GetComponent<PlayerData>().Id)
+            if (_requiredPlayer && _requiredPlayer.Id != PlayerGO.GetComponent<PlayerData>().Id)
             {
-                PlayerGO.GetComponent<PlayerData>().Show("You are not the right character to use that!", 1.5f);
+                //PlayerGO.GetComponent<PlayerData>().Show("You are not the right character to use that!", 1.5f);
                 return;
             }
             
             // check if the equipment are as required equipment
             // TODO: make into a list of required equipment later on
-            if (_requiredEquipment && PlayerGO && !PlayerGO.GetComponent<PlayerData>().CheckEquipment(_requiredEquipment))
+            if (_requiredEquipment && !PlayerGO.GetComponent<PlayerData>().CheckEquipment(_requiredEquipment))
             {
-                PlayerGO.GetComponent<PlayerData>().Show("You do not have the correct equipment to use that!", 1.5f);
+                //PlayerGO.GetComponent<PlayerData>().Show("You do not have the correct equipment to use that!", 1.5f);
                 return;
             }
             
